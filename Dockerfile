@@ -1,10 +1,4 @@
-#
-#--------------------------------------------------------------------------
-# Image Setup
-#--------------------------------------------------------------------------
-#
-
-FROM php:7.2.2-cli-alpine3.7
+FROM php:7.3.1-cli-alpine3.8
 
 MAINTAINER R. Hessing
 
@@ -58,40 +52,6 @@ RUN pecl channel-update pecl.php.net && pecl install mcrypt-1.0.1 && docker-php-
 RUN rm /var/cache/apk/* \
     && mkdir -p /var/www
 
-#
-#--------------------------------------------------------------------------
-# Optional Supervisord Configuration
-#--------------------------------------------------------------------------
-#
-# Modify the ./supervisor.conf file to match your App's requirements.
-# Make sure you rebuild your container with every change.
-#
+RUN php -v | head -n 1 | grep -q "PHP 7.3."
 
-COPY supervisord.conf /etc/supervisord.conf
-
-ENTRYPOINT ["/usr/bin/supervisord", "-n", "-c",  "/etc/supervisord.conf"]
-
-#
-#--------------------------------------------------------------------------
-# Optional Software's Installation
-#--------------------------------------------------------------------------
-#
-# If you need to modify this image, feel free to do it right here.
-#
-    # -- Your awesome modifications go here -- #
-
-#
-#--------------------------------------------------------------------------
-# Check PHP version
-#--------------------------------------------------------------------------
-#
-
-RUN php -v | head -n 1 | grep -q "PHP 7.2."
-
-#
-#--------------------------------------------------------------------------
-# Final Touch
-#--------------------------------------------------------------------------
-#
-
-WORKDIR /etc/supervisor/conf.d/
+CMD ["/usr/local/bin/docker-entrypoint.sh"]

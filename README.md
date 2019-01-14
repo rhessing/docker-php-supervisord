@@ -5,7 +5,7 @@ repo for supervisord used by docker
 Worker
 
 Uses:
-Latest php 7
+Latest php 7.3
 Mods:
  - mysqlnd
  - opcache
@@ -62,4 +62,10 @@ Mods:
  - xsl
  - zip
 
-Supervisor (for running job workers)
+Supervisord (for running job workers)
+
+Options:
+IP, default setting when not set is 0.0.0.0
+PORT, default setting when not set is 9001
+COMMAND, default setting when not set is: php /var/www/apps/laravel/artisan queue:work --sleep=3 --tries=3 --daemon
+PROCESSES, default setting when not set is 4
