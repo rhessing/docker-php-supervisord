@@ -7,6 +7,7 @@ config_file="/etc/supervisord.conf"
 # Set env controlled variables
 COMMAND=${COMMAND:-php /var/www/apps/laravel/artisan queue:work --sleep=3 --tries=3 --daemon}
 PROCESSES=${PROCESSES:-4}
+DEBUG=${DEVELOPMENT:-false}
 
 # Supervisord config file contents
 cat << EOF > $config_file
@@ -25,6 +26,10 @@ numprocs=$PROCESSES
 redirect_stderr=true
 EOF
 
-echo "Supervisord configuration completed, starting supervisord"
-
-/usr/bin/supervisord -n -c /etc/supervisord.conf
+if [ ! $DEBUG ]
+then
+  echo "Supervisord configuration completed, starting supervisord"
+  /usr/bin/supervisord -n -c /etc/supervisord.conf
+else
+  echo "Debug environment detected, not starting supervisord. Have fun debugging!"
+fi
