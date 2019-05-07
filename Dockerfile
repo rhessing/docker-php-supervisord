@@ -1,26 +1,34 @@
-FROM php:7.3.1-cli-alpine3.8
+FROM php:7.1.29-cli-alpine3.9
 
 MAINTAINER R. Hessing
 
 RUN apk --update add \
-        freetype-dev \
-        libjpeg-turbo-dev \
-        libpng-dev \
-        libmcrypt-dev \
-        bzip2-dev \
-        gettext-asprintf \
-        libintl \
-        libunistring \
-        gettext-libs \
-        libgomp \
-        gettext \
-        gettext-dev \
-        gmp-dev \
-        icu-dev \
         aspell-dev \
-        tidyhtml-dev \
+        autoconf \
+        bzip2-dev \
+        composer \
+        coreutils \
+        freetype-dev \
+        g++ \
+        gettext \
+        gettext-asprintf \
+        gettext-dev \
+        gettext-libs \
+        git \
+        gmp-dev \
+        libgomp \
+        libintl \
+        libjpeg-turbo-dev \
+        libmcrypt-dev \
+        libpng-dev \
+        libunistring \
+        make \
+        icu-dev \
         supervisor \
-        autoconf make g++ \
+        tidyhtml-dev \
+        tini \
+        unzip \
+        zip \
     && docker-php-ext-install -j$(nproc) iconv \
     && docker-php-ext-configure gd --with-gd --with-freetype-dir=/usr/include/ --with-png-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
     && docker-php-ext-install -j$(nproc) gd \
@@ -47,11 +55,9 @@ RUN apk --update add \
     && docker-php-ext-configure zip --with-zip \
     && docker-php-ext-install -j$(nproc) zip
 
-RUN pecl channel-update pecl.php.net && pecl install mcrypt-1.0.1 && docker-php-ext-enable mcrypt
+RUN pecl channel-update pecl.php.net && pecl install mcrypt-1.0.1 && pecl install cassandra && docker-php-ext-enable mcrypt
 
 RUN rm /var/cache/apk/* \
     && mkdir -p /var/www
-
-RUN php -v | head -n 1 | grep -q "PHP 7.3."
 
 CMD ["/usr/local/bin/docker-entrypoint.sh"]
