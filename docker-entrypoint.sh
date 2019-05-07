@@ -5,8 +5,6 @@ set -e
 config_file="/etc/supervisord.conf"
 
 # Set env controlled variables
-IP=${IP:-0.0.0.0}
-PORT=${PORT:-9001}
 COMMAND=${COMMAND:-php /var/www/apps/laravel/artisan queue:work --sleep=3 --tries=3 --daemon}
 PROCESSES=${PROCESSES:-4}
 
@@ -15,8 +13,6 @@ cat << EOF > $config_file
 [supervisord]
 nodaemon=true
 [supervisorctl]
-[inet_http_server]
-port = $IP:$PORT
 [rpcinterface:supervisor]
 supervisor.rpcinterface_factory = supervisor.rpcinterface:make_main_rpcinterface
 
