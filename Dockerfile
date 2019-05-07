@@ -56,7 +56,7 @@ RUN apk --update add \
     && docker-php-ext-configure zip --enable-zip \
     && docker-php-ext-install -j$(nproc) zip
 
-RUN pecl channel-update pecl.php.net && pecl install mcrypt-1.0.1 && pecl install cassandra && docker-php-ext-enable mcrypt
+RUN pecl channel-update pecl.php.net && pecl install mcrypt-1.0.0 && pecl install cassandra && docker-php-ext-enable mcrypt
 
 RUN rm /var/cache/apk/* \
     && mkdir -p /var/www
