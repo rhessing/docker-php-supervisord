@@ -36,6 +36,7 @@ Mods:
  - mcrypt
  - mysqli
  - odbc
+ - pcntl
  - pdo_firebird
  - pdo_mysql
  - pdo_odbc
@@ -65,7 +66,8 @@ Mods:
 Supervisord (for running job workers)
 
 Options:
-* IP, default setting when not set is 0.0.0.0
-* PORT, default setting when not set is 9001
 * COMMAND, default setting when not set is: php /var/www/apps/laravel/artisan queue:work --sleep=3 --tries=3 --daemon
 * PROCESSES, default setting when not set is 4
+* DEBUG, default setting when not set is false.
+
+Debugging is handy for development purposes or if you need to debug your queue commands. Supervisord will not be started when debug is enabled giving you the option to manually run PHP scripts in the container.
