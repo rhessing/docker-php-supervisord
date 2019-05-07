@@ -7,7 +7,7 @@ config_file="/etc/supervisord.conf"
 # Set env controlled variables
 COMMAND=${COMMAND:-php /var/www/apps/laravel/artisan queue:work --sleep=3 --tries=3 --daemon}
 PROCESSES=${PROCESSES:-4}
-DEBUG=${DEVELOPMENT:-false}
+DEBUG=${DEBUG:-false}
 
 # Supervisord config file contents
 cat << EOF > $config_file
