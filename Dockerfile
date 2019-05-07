@@ -33,8 +33,6 @@ RUN apk --update add \
     && docker-php-ext-install -j$(nproc) iconv \
     && docker-php-ext-configure gd --with-gd --with-freetype-dir=/usr/include/ --with-png-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
     && docker-php-ext-install -j$(nproc) gd \
-    && docker-php-ext-configure curl --with-curl \
-    && docker-php-ext-install -j$(nproc) curl \
     && docker-php-ext-configure bcmath --enable-bcmath \
     && docker-php-ext-install -j$(nproc) bcmath \
     && docker-php-ext-configure bz2 --with-bz2 \
@@ -47,14 +45,10 @@ RUN apk --update add \
     && docker-php-ext-install -j$(nproc) gmp \
     && docker-php-ext-configure intl --enable-intl \
     && docker-php-ext-install -j$(nproc) intl \
-    && docker-php-ext-configure mbstring --enable-mbstring \
-    && docker-php-ext-install -j$(nproc) mbstring \
     && docker-php-ext-configure mysqli --with-mysqli \
     && docker-php-ext-install -j$(nproc) mysqli \
     && docker-php-ext-configure pspell --with-pspell \
     && docker-php-ext-install -j$(nproc) pspell \
-    && docker-php-ext-configure pcntl --enable-pcntl \
-    && docker-php-ext-install -j$(nproc) pcntl \
     && docker-php-ext-configure shmop --enable-shmop \
     && docker-php-ext-install -j$(nproc) shmop \
     && docker-php-ext-configure tidy --with-tidy \
