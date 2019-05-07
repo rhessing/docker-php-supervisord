@@ -60,4 +60,6 @@ RUN pecl channel-update pecl.php.net && pecl install mcrypt-1.0.1 && pecl instal
 RUN rm /var/cache/apk/* \
     && mkdir -p /var/www
 
+ENTRYPOINT ["/sbin/tini", "--"]
+
 CMD ["/usr/local/bin/docker-entrypoint.sh"]
