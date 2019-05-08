@@ -22,6 +22,7 @@ RUN apk --update add \
         libmcrypt-dev \
         libpng-dev \
         libunistring \
+        libuv \
         libzip-dev \
         make \
         icu-dev \
