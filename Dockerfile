@@ -6,6 +6,7 @@ RUN apk --update add \
         aspell-dev \
         autoconf \
         bzip2-dev \
+        cassandra-cpp-driver-dev \
         composer \
         coreutils \
         freetype-dev \
