@@ -64,8 +64,10 @@ RUN pecl channel-update pecl.php.net \
     && docker-php-ext-enable mcrypt \
     && docker-php-ext-enable cassandra
 
+COPY docker-entrypoint.sh /usr/local/bin/
 RUN rm /var/cache/apk/* \
-    && mkdir -p /var/www
+    && mkdir -p /var/www \
+    && chmod 755 /usr/local/bin/docker-entrypoint.sh
 
 ENTRYPOINT ["/sbin/tini", "--"]
 
