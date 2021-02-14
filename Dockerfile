@@ -72,10 +72,8 @@ RUN apk --update add \
 
 RUN pecl channel-update pecl.php.net \
     && pecl install mcrypt \
-    && pecl install cassandra \
     && pecl install redis \
     && docker-php-ext-enable mcrypt \
-    && docker-php-ext-enable cassandra \
     && docker-php-ext-enable redis 
 
 RUN apk del --no-cache \
