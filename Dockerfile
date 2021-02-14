@@ -1,4 +1,4 @@
-FROM php:7.1.29-cli-alpine3.9
+FROM 7-cli-alpine3.12
 
 MAINTAINER R. Hessing
 
@@ -59,10 +59,12 @@ RUN apk --update add \
     && docker-php-ext-install -j$(nproc) zip
 
 RUN pecl channel-update pecl.php.net \
-    && pecl install mcrypt-1.0.0 \
+    && pecl install mcrypt \
     && pecl install cassandra \
+    && pecl install redis \
     && docker-php-ext-enable mcrypt \
-    && docker-php-ext-enable cassandra
+    && docker-php-ext-enable cassandra \
+    && docker-php-ext-enable redis 
 
 COPY docker-entrypoint.sh /usr/local/bin/
 RUN rm /var/cache/apk/* \
