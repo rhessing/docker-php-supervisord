@@ -4,14 +4,63 @@ Supervisord (for running job workers) with the latest version of PHP 7
 
 Please note that the default behavior expects a Laravel app to be mounted within /var/www. You can change this by using a different command then the default command as described below.
 
-Options:
+## Options:
 * COMMAND, default setting when not set is: php /var/www/apps/laravel/artisan queue:work --sleep=3 --tries=3 --daemon
 * PROCESSES, default setting when not set is 4
-* DEBUG, default setting when not set is false.
 
-Debugging is handy for development purposes or if you need to debug your queue commands. Supervisord will not be started when debug is enabled giving you the option to manually run PHP scripts in the container.
+## Usage
+Quick run:
+```sh
+docker run -d \
+  --name taskrunner \
+  --mount type=bind,source="$(pwd)"/www,target=/var/www \
+  rhessing/php-supervisord
+```
+
+
+Different amount of processes:
+```sh
+docker run -d \
+  --name taskrunner \
+  -e PROCESSES=8 \
+  --mount type=bind,source="$(pwd)"/www,target=/var/www \
+  rhessing/php-supervisord
+```
+
+
+Different command:
+```sh
+docker run -d \
+  --name taskrunner \
+  -e COMMAND="php /var/www/app/bin/console messenger:consume async --time-limit=3600"
+  --mount type=bind,source="$(pwd)"/app,target=/var/www \
+  rhessing/php-supervisord
+```
+
+
+Different command and amount of processes:
+```sh
+docker run -d \
+  --name taskrunner \
+  -e PROCESSES=1 \
+  -e COMMAND="php /var/www/app/bin/console messenger:consume async --time-limit=3600"
+  --mount type=bind,source="$(pwd)"/app,target=/var/www \
+  rhessing/php-supervisord
+```
+
+
+If you want, you can use this image to debug your PHP code:
+```sh
+docker run -it \
+  --rm \
+  --name taskrunner \
+  --mount type=bind,source="$(pwd)"/app,target=/var/www \
+  rhessing/php-supervisord /bin/sh
+```
+
 
 Uses: latest version of PHP 7, (php:7-cli-alpine3.12)
+
 GitHub: https://github.com/rhessing/docker-php-supervisord
 
 Mods:
@@ -62,5 +111,3 @@ Mods:
 - xmlwriter
 - zip
 - zlib
-
-
