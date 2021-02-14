@@ -6,7 +6,6 @@ RUN apk --update add \
         aspell-dev \
         autoconf \
         bzip2-dev \
-        cassandra-cpp-driver-dev \
         composer \
         coreutils \
         freetype-dev \
@@ -68,34 +67,15 @@ RUN apk --update add \
     && docker-php-ext-enable tidy \
     && docker-php-ext-configure zip \
     && docker-php-ext-install -j$(nproc) zip \
-    && docker-php-ext-enable zip
-
-RUN pecl channel-update pecl.php.net \
+    && docker-php-ext-enable zip \
+    && pecl channel-update pecl.php.net \
     && pecl install mcrypt \
     && pecl install redis \
     && docker-php-ext-enable mcrypt \
-    && docker-php-ext-enable redis 
-
-RUN apk del --no-cache \
-      freetype-dev \
-      libjpeg-turbo-dev \
-      libpng-dev \
-      aspell-dev \
-      autoconf \
-      bzip2-dev \
-      cassandra-cpp-driver-dev \
-      freetype-dev \
+    && docker-php-ext-enable redis \
+    && apk del --no-cache \
       g++ \
-      gettext-dev \
-      gmp-dev \
-      libjpeg-turbo-dev \
-      libmcrypt-dev \
-      libpng-dev \
-      libuv-dev \
-      libzip-dev \
       make \
-      icu-dev \
-      tidyhtml-dev \
     && rm -rf /tmp/* \
     && rm /var/cache/apk/*
 
