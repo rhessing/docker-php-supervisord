@@ -1,4 +1,4 @@
-FROM 7-cli-alpine3.12
+FROM php:7-cli-alpine3.12
 
 MAINTAINER R. Hessing
 
