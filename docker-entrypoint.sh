@@ -26,7 +26,7 @@ numprocs=$PROCESSES
 redirect_stderr=true
 EOF
 
-if [ ! $DEBUG ]
+if [ "${DEBUG}" != "true" ]
 then
   echo "Supervisord configuration completed, starting supervisord"
   /usr/bin/supervisord -n -c /etc/supervisord.conf
