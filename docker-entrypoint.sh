@@ -32,5 +32,5 @@ then
   /usr/bin/supervisord -n -c /etc/supervisord.conf
 else
   echo "Debug environment detected, not starting supervisord. Have fun debugging!"
-  /bin/sh
+  /bin/sh "$@"
 fi
