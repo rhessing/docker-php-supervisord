@@ -1,16 +1,16 @@
 # docker-php-supervisord
 
-Supervisord (for running job workers) with the latest version of PHP 7
+Supervisord (for running job workers)
 
 Please note that the default behavior expects a Laravel app to be mounted within /var/www. You can change this by using a different command then the default command as described below.
 
 ## Tags
 - `latest`  Latest production release (8.0.x).
-- `8.0`    Latest 8.0.x release.
-- `7.4`    Latest 7.4.x release.
-- `7.3`    Latest 7.3.x release.
+- `php-8.0`    Latest 8.0.x release.
+- `php-7.4`    Latest 7.4.x release.
+- `php-7.3`    Latest 7.3.x release.
 
-## Options
+## Options:
 * COMMAND, default setting when not set is: php /var/www/apps/laravel/artisan queue:work --sleep=3 --tries=3 --daemon
 * PROCESSES, default setting when not set is 4
 
@@ -64,12 +64,10 @@ docker run -it \
   rhessing/php-supervisord /bin/sh
 ```
 
+## GitHub
+- https://github.com/rhessing/docker-php-supervisord
 
-Uses: latest version of PHP 7, (php:7-cli-alpine3.12)
-
-GitHub: https://github.com/rhessing/docker-php-supervisord
-
-Mods:
+## Mods
 - bcmath
 - bz2
 - Core
