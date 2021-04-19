@@ -64,7 +64,7 @@ docker run -it \
   rhessing/php-supervisord /bin/sh
 ```
 
-##GitHub
+## GitHub
 - https://github.com/rhessing/docker-php-supervisord
 
 ## Mods
