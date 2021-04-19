@@ -1,4 +1,4 @@
-FROM php:7.3-alpine3.12
+FROM php:7.4-alpine3.12
 
 MAINTAINER R. Hessing
 
