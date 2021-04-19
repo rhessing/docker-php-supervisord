@@ -1,6 +1,6 @@
 # docker-php-supervisord
 
-Supervisord (for running job workers) with the latest version of PHP 7
+Supervisord (for running job workers)
 
 Please note that the default behavior expects a Laravel app to be mounted within /var/www. You can change this by using a different command then the default command as described below.
 
@@ -64,12 +64,10 @@ docker run -it \
   rhessing/php-supervisord /bin/sh
 ```
 
+## GitHub
+- https://github.com/rhessing/docker-php-supervisord
 
-Uses: latest version of PHP 7, (php:7-cli-alpine3.12)
-
-GitHub: https://github.com/rhessing/docker-php-supervisord
-
-Mods:
+## Mods
 - bcmath
 - bz2
 - Core
