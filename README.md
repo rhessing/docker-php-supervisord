@@ -4,6 +4,12 @@ Supervisord (for running job workers) with the latest version of PHP 7
 
 Please note that the default behavior expects a Laravel app to be mounted within /var/www. You can change this by using a different command then the default command as described below.
 
+## Tags
+- `latest`  Latest production release (8.0.x).
+- `8.0`    Latest 8.0.x release.
+- `7.4`    Latest 7.4.x release.
+- `7.3`    Latest 7.3.x release.
+
 ## Options:
 * COMMAND, default setting when not set is: php /var/www/apps/laravel/artisan queue:work --sleep=3 --tries=3 --daemon
 * PROCESSES, default setting when not set is 4
