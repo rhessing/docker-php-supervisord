@@ -1,4 +1,4 @@
-# docker-php-supervisord
+# PHP Supervisord
 
 Supervisord (for running job workers)
 
