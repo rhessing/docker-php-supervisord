@@ -73,6 +73,7 @@ RUN apk --update add \
     && pecl install redis \
     && docker-php-ext-enable mcrypt \
     && docker-php-ext-enable redis \
+    && composer self-update --2 \
     && apk del --no-cache \
       g++ \
       make \
