@@ -20,8 +20,8 @@ supervisor.rpcinterface_factory = supervisor.rpcinterface:make_main_rpcinterface
 [program:laravel-worker]
 process_name=%(program_name)s_%(process_num)02d
 command=$COMMAND
-autostart=false
-autorestart=false
+autostart=${AUTOSTART:-true}
+autorestart=${AUTORESTART:-true}
 numprocs=$PROCESSES
 redirect_stderr=true
 stdout_logfile=/dev/stdout
