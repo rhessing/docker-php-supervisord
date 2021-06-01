@@ -7,6 +7,8 @@ config_file="/etc/supervisord.conf"
 # Set env controlled variables
 COMMAND=${COMMAND:-php /var/www/apps/laravel/artisan queue:work --sleep=3 --tries=3 --daemon}
 PROCESSES=${PROCESSES:-4}
+AUTOSTART=${AUTOSTART:-true}
+AUTORESTART=${AUTORESTART:-true}
 
 # Supervisord config file contents
 cat << EOF > $config_file
@@ -20,8 +22,8 @@ supervisor.rpcinterface_factory = supervisor.rpcinterface:make_main_rpcinterface
 [program:laravel-worker]
 process_name=%(program_name)s_%(process_num)02d
 command=$COMMAND
-autostart=${AUTOSTART:-true}
-autorestart=${AUTORESTART:-true}
+autostart=$AUTOSTART
+autorestart=$AUTORESTART
 numprocs=$PROCESSES
 redirect_stderr=true
 stdout_logfile=/dev/stdout
